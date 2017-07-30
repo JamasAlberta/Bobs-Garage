@@ -1,0 +1,489 @@
+#1 pattern attribute for name and phone.
+* Pattern attribute for name completed.
+Catherin Zeta-Jones ..etc
+
+* Pattern attribute for phone
+The phone field should only accept the following characters: +()0123456789x- and a space. 
+
++ ()0123456789 x - space
+
+\+?
+\d{0,2}
+\s*
+(-)?
+\(?
+\d{3}
+\)?
+\s*
+(-)?
+\d{3}
+\s*
+(-)?
+\d{4}
+\s*
+(-)?
+x?
+\s*
+(-)?
+\d{0,6}
+
+Tester: pattern="\+?\d{0,2}\s*\(?\d{3}\)?\s*\d{3}\s*\d{4}"
+\+?\d{0,2}\s*(-)?\(?\d{3}\)?\s*(-)?\d{3}\s*(-)?\d{4}\s*(-)?x?\s*(-)?\d{0,6}
+
+
+
+
+
+
+
+#2 javascript regex for address
+The address field accepts a reasonable range of characters, for example, numbers and line feed characters will need to be allowed. Deciding which characters to use is part of the task. 
+
+Update: pattern is not supported by textarea elements in the HTML5 standard. Just the regex is needed, the textarea does not need to change state.
+
+<label for="address">Address: </label>
+<textarea id="address" rows="4" cols="40" name="address" placeholder="Please enter your full address here..."></textarea>
+<span class='error' id='addressError'></span>
+
+
+^ start of string					^abc		abc, abcdefg, abc123, ...
+$ end of string						$abc		abc, endsinabc, 123abc, ...
+. Any character						a.c			abc, aac, acc, adc, aec, ...
+| alternation						bill|ted	ted, bill
+{...} quantifier 					ab{2}c		abbc
+[...] explicity set of characters 	a[bB]c		abc, aBc
+(...) logical grouping of  			(abc){2} = abcabc	abcabc
+* 0 or more							ab*c		ac, abc, abbc, abbbc, ...
++ 1 or more							ab+c		abc, abbc, abbbc, ...
+? 0 or 1							ab?c		ac, abc
+\ special characters to literal		a\sc		a c
+\w Word char
+\d Decimal digit
+\s Space
+\n line feed
+
+
+Example Pattern="
+/^\d\s?\w$/;
+
+/^[A-Za-z0-9]{5,1000}\.[A-Za-z0-9]{5,1000}$/;
+
+
+Regex:
+numbers
+Line feed
+Characters
+Full stop
+\d{1,5}\s\w.\s(\b\w*\b\s){1,2}\w*\.
+ /^[\w\s.-]+\d+,\s*[\w\s.-]+$
+ 
+[A-Za-z0-9]{1,50}\s?\.?[A-Za-z0-9]{0,50}\s?\.?[A-Za-z0-9]{0,50}\s?\.?[A-Za-z0-9]{0,50}\s?\.?
+
+[a-zA-Z0-9\s,'-]*
+
+Apartment 10
+10 main street
+Brisbane
+Queensland
+4000
+
+unit 10 east-main street
+Wynnum West
+Brisbane
+Queensland 4000
+
+Unit 10 main street brisbane
+Queensland 4000
+
+Unit 5 east main street
+brisbane
+Queensland
+Australia
+4000
+
+
+
+
+
+
+
+
+
+
+
+<script>
+var addressRegex = /^\d\s?\w$/;
+
+
+// regex checks
+
+
+// Get elements of class 'error' and clear them
+function clearErrors()
+	{
+		var allErrors = document.getElementByClassName('error');
+		for (var i = 0; i < allErrors.length; i++) {
+			allErrors[i].innerHTML = "";
+		}
+		
+		var allInputs = document.getElementByTagName('input');
+		for (i = 0; i < allInputs.length; i++) {
+			allInputs[i].style.removeProperty("background-color");
+		}
+		
+	// Clears address <textarea>'s background-color
+		var = addressArea = document.getElementById('address');
+		addressArea.style.removeProperty("background-color");
+	}
+
+// Checks the address field to correct inputs
+function addressCheck()
+	{	
+		var address = getId('address').value;
+		var addressLines = address.split('\n');
+		
+		for (var i = 0; i < addressLines.length; i++)
+		{
+			if (!addressLines[i].match(addressRegex)
+			{
+				//ToDo: manipulate CS for Address text area
+			}
+			
+			
+		}
+		
+	}
+	
+	
+	
+</script>
+
+
+
+#3 :invalid pseudo style in CSS for pattern attributes.  Javascript function to style invalid characters (same as css). This is activated when typing (onChange?)
+````This has already been completed for all standard text inputs except address.`````
+
+#4 when leaving the phone field all invalid characters are removed (onBlurr)
+----
+var patt = /^(Stephen|Steven|Stephan|Stefanie)/;
+name.replace(patt,"Steve");
+---
+var mystring = "crt/r2002_2";
+mystring = mystring.replace('/r','/');
+---
+[^a-zA-Z0-9/-]+
+[^ ] at the start of a character class negates it - it matches characters not in the class.
+----
+/*
+var str = "foo bar baz";
+// returns: "foo r z"
+str.replace(/ba/gi, '');
+
+
+removeInvalidPhone()
+
+define regex
+get value of phone input
+replace 
+
+*/
+
+
+
+#5 use javascript to detect a NAPN. Image appears when it is and disappears when it isn't. 
+
+footer article:nth-of-type(3) h4::after {
+	margin-left: 10px;
+  content: url('images/vehicle.gif');
+}
+
+
+
+telephone numbering format: +1 YXX-YXX-XXXX where Y can be any digit from 2 through 9 and X can be any digit
+
+All countries part of the NANP have country code 1(one)
+
+/p[rl]ayer/
+
+pattern="\+?\d{0,2}\s*(-)?\(?\d{3}\)?\s*(-)?\d{3}\s*(-)?\d{4}\s*(-)?x?\s*(-)?\d{0,6}"
+
+\+{1}\s*(-)?[2-9]\d{2}\s*(-)?[2-9]\d{2}\s*(-)?\d{4}\s*(-)?x?\s*(-)?\d{0,6}
+
+
++1 YXX-YXX-XXXX 
++1-234-234-1234
++1 456-432-1234
++2-234-234-1234
++1 456-432-1234 x342
+
+
+RANDOM SHIT: 
+
+	var phoneNanp = /^\+{1}[1][\s|-]?\(?[2-9]\d{2}\)?[\s|-]?[2-9]\d{2}[\s|-]?\d{4}[\s|-]?x?[\s|-]?\d{0,6}$/;
+
+	//getId('phoneSpan').getElementsByTagName('img')[0]style.display = 'block';
+	
+//		nanpImg.style.display = 'none';
+	/*+1-234-234-1234
+			if(!addressLines[i].match(addressRegex)){
+			getId('address').style.backgroundColor='#fee';
+			return false;
+		}
+		var phoneNanp = /^\+{1}\s*(-)?[2-9]\d{2}\s*(-)?[2-9]\d{2}\s*(-)?\d{4}\s*(-)?x?\s*(-)?\d{0,6}$/;
+	
+	if(!phone.value.match(phoneNapn)){
+		phone.style.::after
+	nanpImg.style.removeProperty('display');
+	
+	}
+	*/
+	
+/*
++(   )0  123      4 56 78 9 x -
+
+<input type="tel" pattern="\+?\d{0,2}\s*(-)?\(?\d{3}\)?\s*(-)?\d{3}\s*(-)?\d{4}\s*(-)?x?\s*(-)?\d{0,6}" id="phone" onblur="updatePhone()" name="phone" placeholder="07 3456 1234"/>
+
+
+footer article:nth-of-type(3) h4::after {
+	margin-left: 10px;
+  content: url('images/vehicle.gif');
+}
+
+*/
+
+
+
+
+#6 Phone fields optional characters, sequences, spaces & dashes, extensions are fully implemented.
+
+#7 Checking the remember me checkbox field should store all user details in localStorage.
+Checkbox: <input type="checkbox" id="myCheck">
+
+<button onclick="check()">Check Checkbox</button>
+<button onclick="uncheck()">Uncheck Checkbox</button>
+
+<script>
+function check() {
+    document.getElementById("myCheck").checked = true;
+}
+
+function uncheck() {
+    document.getElementById("myCheck").checked = false;
+}
+</script>
+
+
+
+
+
+#8 Unchecking the remember me checkbox field should remove all user details from localStorage.
+
+
+
+
+#9 When the user comes to the page, user fields should be pre-filled from localStorage.
+
+
+
+The pattern attributes (or javascript regexes) for the name, address and phone fields are correct, but just the name and phone fields are correctly set up.
+
+The :invalid pseudo class (or javascript functions) flag invalid entries in the name and phone fields made by the customer.
+
+The above input validation and styling is activated as the customer types.
+
+When the customer leaves the phone number field, any and all invalid characters are removed.
+
+Javascript is used to detect a number that conforms to the North American Number Plan (NAPN). 
+
+A little North America image appears next to the phone field when the phone number conforms to the NANP standard and disappears when it doesn't.
+
+The rules regarding optional characters, sequences, spaces & dashes, extensions are fully implemented.
+
+Checking the remember me checkbox field stores all user details in localStorage.
+
+Unchecking the remember me checkbox field removes all user details from localStorage.
+
+When the user comes to the page, user fields should be pre-filled from localStorage.
+
+
+
+
+
+
+^ start of string					^abc		abc, abcdefg, abc123, ...
+$ end of string						$abc		abc, endsinabc, 123abc, ...
+. Any character						a.c			abc, aac, acc, adc, aec, ...
+| alternation						bill|ted	ted, bill
+{...} quantifier 					ab{2}c		abbc
+[...] explicity set of characters 	a[bB]c		abc, aBc
+(...) logical grouping of  			(abc){2} = abcabc	abcabc
+* 0 or more							ab*c		ac, abc, abbc, abbbc, ...
++ 1 or more							ab+c		abc, abbc, abbbc, ...
+? 0 or 1							ab?c		ac, abc
+\ special characters to literal		a\sc		a c
+\w Word char
+\d Decimal digit
+\s Space
+
+Phone: pattern="(?:\(\d{3}\)|\d{3})[- ]?\d{3}[- ]?\d{4}"
+Example: +1 (888) 888 8888
+
+
+-----------------------------
+<input type="text" pattern="Gerard (')t Hooft|Catherine Zeta-Jones|Robert Downey Jr(.)"
+id="name" name="name" placeholder="John Smith..."/>
+
+---------------------
+var patt = /^(Stephen|Steven|Stephan|Stefanie)/;
+name.replace(patt,"Steve");
+
+---------------------
+<input type="text" id="myInput" oninput="myFunction()">
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+    var x = document.getElementById("myInput").value;
+    document.getElementById("demo").innerHTML = "You wrote: " + x;
+}
+</script>
+
+----------------------------------
+Enter name: <input type="text" id="myInput" value="Mickey">
+
+<script>
+document.getElementById("myInput").addEventListener("input", myFunction);
+
+function myFunction() {
+    alert("The value of the input field was changed.");
+}
+</script>
+
+
+---------************-------------
+
+<input type="text" pattern="Gerard (')t Hooft|Catherine Zeta-Jones|Robert Downey Jr(.)"
+id="name" oninput="inputFilter()" name="name" placeholder="John Smith..."/>
+
+<script>
+document.getElementById("name").addEventListener("input", inputFilter);
+
+function inputFilter() {
+	var namePatt = /^(Geraard)/;
+	name.replace(namePatt,"Gerard")
+}
+</script>
+--------------------------
+<input id="txt-box1" type="text" />
+    <input id="txt-box2" type="text" />
+    <input id="txt-box3" type="text" />
+
+<textarea></textarea>
+
+$.fn.restrictInputs = function(restrictPattern){
+    var targets = $(this);
+    var pattern = restrictPattern || /[^0-9A-Z !\\"#$%&'()*+,\-.\/:;<=>?@\[\]^_`{|}~]*/g; // some default pattern
+
+    var restrictHandler = function(){
+        var val = $(this).val();
+        var newVal = val.replace(pattern, '');
+
+        if (val !== newVal) { // To prevent selection and keyboard navigation issues
+            $(this).val(newVal);
+        }
+    };
+
+    targets.on('keyup', restrictHandler);
+    targets.on('paste', restrictHandler);
+    targets.on('change', restrictHandler);
+};
+
+
+$('input, textarea').restrictInputs();
+
+
+---------*********----------------
+JAVASCRIPT NOTES: ......
+
+//this will get the form element s1-qty's value.
+var s1-qty = document.getElementById('s1-qty').value;
+
+// example form validation 
+view-source:http://titan.csit.rmit.edu.au/~e54061/wp/ProjectSteve.html
+
+// looks for class of "error" and makes them invisible and resets form fields.
+clearErrors():
+
+//to avoid typing document.getElementById()
+getid(): 
+
+//checks that the name is "steve" or sets an error msg and styles invalid name field
+nameCheck():
+
+// checks that the scientist button is selected, or sets an error msg
+scientistCheck(): 
+
+One "master" form validate function 'formValidate()'.
+It first calls 'clearErrors()' to reset any error messages and field styles.
+Then calls all the other functions.
+
+each function returns fals and an error counter is incremented.
+At the end if the error count is greater than zero, the submission is blocked.
+Returns true or false to the onsubmit event handler which will block or allow submission.
+
+
+// onblur - triggers when you leave the box. Can run function when you leave field.
+// onInput
+// onClick or onChange for check boxes and radio buttons
+
+
+-----------**********-----------------
+Steps to complete:
+Note: regular expression sits in the pattern attributes. CSS includes :invalud pseudo styling.
+
+#1, onType - fix it so it will filter invalid characters as they are typing.
+name, address, phone and email.
+
+
+
+
+#2, double check name field field has been completed.
+Pattern and filter.
+
+
+
+
+#3, address - accepts:
+* range of characters
+* a line feed (\n)
+* numbers, spaces, characters and a full-stop. 
+Pattern and filter
+\d{1,5}\s\w.\s(\b\w*\b\s){1,2}\w*\.
+//https://stackoverflow.com/questions/16465325/regular-expression-on-textarea
+javascript validate. 
+
+
+
+#4, phone - accepts:
+* +()0123456789x- and a space
+Pattern and filter 
+*invalid characters removed when finished typing. replace() in JavaScript to be used.
+after they type, it'll clear spaces or whatever is not necessary. Check Assignment 3 guide.
+*When user enters North American Number (+1), a North American image appears.
+
+pattern="(?:\(\d{3}\)|\d{3})[- ]?\d{3}[- ]?\d{4}"
+([2-9][0-9]{2})\)?[-. ]?([2-9](?!11)[0-9]{2})[-. ]?([0-9]{4})
+(800) 555 1212 is valid.
+(800) 911 1212 is invalid. 
+
+
+
+
+
+
+
+
+
+
+

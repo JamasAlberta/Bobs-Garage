@@ -1,0 +1,268 @@
+// storing in session
+https://stackoverflow.com/questions/23399591/storing-multiple-values-in-session-array-and-retrieving
+
+// contains examples of the SESSION and ARRAY when adding items.
+https://titan.csit.rmit.edu.au/~e54061/secure/pizza.php
+
+// shopping cart php
+https://stackoverflow.com/questions/29629830/creating-simple-shopping-cart-using-php
+
+--------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------
+
+
+	//foreach ($assocArr as $key => &$value)
+	//unset($_SESSION['cart']);
+  
+  /*
+  
+    elseif (isset($_POST["remove"])) {
+	foreach ($_SESSION['cart'] as $key => &$value) {
+		$text2 = $value;
+		if(in_array($_POST["remove"],$value)) {
+			$text3 .= "<br>James: $value <br>";
+			$text4 = $value;
+		}
+		}
+	}
+  
+  
+  
+  
+  /*
+    elseif (isset($_POST["remove"])) {
+  	$text = "Remove: ";
+  	$text2 = "Remove2: ";
+	foreach ($_SESSION['cart'] as $value) {
+		$text .= $value;
+		foreach ($value as $key) {
+			$text2 .= $key."No<br>";
+			if (strcmp($_POST["remove"], $key) == 0){
+				$text2 .= $key."Yes<br>";
+				unset($key);
+			} //strcmp($string1, $string2);
+		}
+
+  */
+  
+  /*
+  elseif (isset($_POST["remove"])) {
+  	//removeItem($_SESSION['cart'], $vendID); 
+  	foreach ($_SESSION['cart'] as $value) {
+  		///////////////TO DO SORT OUT HOW TO UNSET INDIVIDUAL ADD Arrays
+  		if($value === $_POST["remove"]){
+  			unset($_SESSION['cart']);
+  		}
+  		
+  		
+  			//unset($value[$items]);
+    	//if (($value => $item) === $_POST["remove"]) {
+        	//unset($_SESSION['cart']); }
+      }
+    }*/
+    
+    
+
+
+---------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+//form action submit to self (post)
+
+//one button for each item that starts with add to cart
+
+// button's value is vendID and name is 'add'.
+// clicking submits to self
+
+// php code checks isset POST "add" then 
+	session's cart (array?) = post (vendID).
+	Foreach loop should contain logic to replace the "Add to Cart" button with "Remove from Cart" button.
+	"Remove from Cart" button name = "remove" and vendID as the value.
+	
+// php code checks isset POST "remove" then
+	session's cart (array?) removes vendID
+	Foreach loop should contain logic to replace the "Remove from Cart" button with "Add to Cart" button.
+	"Add to Cart" button name = "add" and vendID as the value.
+
+
+
+
+
+* Vending machines will be in one big form. 
+
+The form should submit to vend.php.
+
+PHP processing code should exist to detect two $_POST variables named ADD and DELETE.
+
+The value of these variables should be equal to the vendID associated with each machine.
+
+
+
+* Details of each vend machine should be in a logical block (article, div etc.) with {vendID} as the id.
+Images float left.
+Text flow right.
+A clearing element should be used to stop "floating mishaps".
+Text includes: title, discription, vendID, price and a submit button "ADD" and vendID as the value. 
+
+* When any "add to cart" button is pressed, the form should submit "to itself" using the post method.
+It detects the submitted vendID.
+Foreach loop should contain logic to replace the "Add to Cart" button with "Remove from Cart" button.
+"Remove from Cart" button name = "remove" and vendID as the value.
+
+https://titan.csit.rmit.edu.au/~e54061/wp/vends-loader.php
+
+
+
+
+
+----------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
+
+/pre><h1>2) Vending Machine Output</h1><form method=post>
+    <div>
+      <img src='barqvendmachine.jpg' alt='Ideal Model 55 Pepsi-Cola Slider Machine Late 40s Early 50s' style='float:left; width:200px; margin-right:10px;'>
+      <h3>Ideal Model 55 Pepsi-Cola Slider Machine Late 40s Early 50s</h3>
+      <p>Unusual Barqs Root Beer Ideal slider machine. Original Barqs blue and authentic graphics. Non-embossed.</p>
+      <p><b>Product #BRB</b></p>
+	  
+      <p>$4695 <button name='add' value='BRB'>Add to cart</button></p>
+	  
+      <div style='clear:both'></div>
+    </div>
+	
+	</pre><h1>2) Vending Machine Output</h1><form method=post>
+    <div>
+      <img src='barqvendmachine.jpg' alt='Ideal Model 55 Pepsi-Cola Slider Machine Late 40s Early 50s' style='float:left; width:200px; margin-right:10px;'>
+      <h3>Ideal Model 55 Pepsi-Cola Slider Machine Late 40s Early 50s</h3>
+      <p>Unusual Barqs Root Beer Ideal slider machine. Original Barqs blue and authentic graphics. Non-embossed.</p>
+      <p><b>Product #BRB</b></p>
+	  
+      <p>$4695 <button name='remove' value='BRB'>Remove from cart</button></p>
+	  
+      <div style='clear:both'></div>
+    </div>
+    <div>
+	
+-------------------------------------------------------------------------------------------------------------------++
+
+
+	//foreach ($assocArr as $key => &$value)
+	//unset($_SESSION['cart']);
+  
+  /*
+  
+    elseif (isset($_POST["remove"])) {
+	foreach ($_SESSION['cart'] as $key => &$value) {
+		$text2 = $value;
+		if(in_array($_POST["remove"],$value)) {
+			$text3 .= "<br>James: $value <br>";
+			$text4 = $value;
+		}
+		}
+	}
+  
+  
+  
+  
+  /*
+    elseif (isset($_POST["remove"])) {
+  	$text = "Remove: ";
+  	$text2 = "Remove2: ";
+	foreach ($_SESSION['cart'] as $value) {
+		$text .= $value;
+		foreach ($value as $key) {
+			$text2 .= $key."No<br>";
+			if (strcmp($_POST["remove"], $key) == 0){
+				$text2 .= $key."Yes<br>";
+				unset($key);
+			} //strcmp($string1, $string2);
+		}
+
+  */
+  
+  /*
+  elseif (isset($_POST["remove"])) {
+  	//removeItem($_SESSION['cart'], $vendID); 
+  	foreach ($_SESSION['cart'] as $value) {
+  		///////////////TO DO SORT OUT HOW TO UNSET INDIVIDUAL ADD Arrays
+  		if($value === $_POST["remove"]){
+  			unset($_SESSION['cart']);
+  		}
+  		
+  		
+  			//unset($value[$items]);
+    	//if (($value => $item) === $_POST["remove"]) {
+        	//unset($_SESSION['cart']); }
+      }
+    }*/
+    
+    
+    .vend-articles {
+	box-sizing: border-box;
+	margin: 10px;
+	flex-basis: 50%;
+	display: inline-block;
+	min-width: 400px;
+	max-width: 700px;
+}
+
+
+@media (min-width: 700px) {
+	.vend-section{
+		display: flex;
+		justify-content: space-around; 
+	}
+}
+
+
+.vend-section {
+	padding: 20px 0;
+}
+
+.eqWrap {
+	display: flex;
+}
+
+.eq {
+	padding: 10px;
+}
+
+.eq:nth-of-type(odd) {
+	background: yellow;
+}
+
+.eq:nth-of-type(even) {
+	background: lightblue;
+}
+
+
+.equalHMWrap {
+	justify-content: space-between;
+}
+
+.equalHM {
+	width: 48%;
+}
+
+
+
+.vend-section {
+	padding: 20px 0;
+}
+
+.vend-articles {
+	display: flex;
+	justify-content: space-between;
+}
+
+.vend-sub-articles {
+	padding: 10px;
+	width: 48%;
+}
+
+.vend-sub-articles:nth-of-type(odd) {
+	background: yellow;
+}
+
+.vend-sub-articles:nth-of-type(even) {
+	background: lightblue;
+}
